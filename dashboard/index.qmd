@@ -1,0 +1,180 @@
+---
+title: "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas"
+author: "E. Montejo, J. Pérez & J. F. Pérez"
+logo: img/logo.png
+format:
+  dashboard:
+    orientation: rows
+jupyter: .venv
+theme: 
+    light: Cerulean
+    dark: Cyborg   
+---
+
+## 0. Activar librerías
+
+```{python}
+import plotly.graph_objects as go
+import pandas as pd
+from pathlib import Path
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
+```
+
+# Rezago educativo 
+## Row {height=100%}
+**Porcentaje de rezago educativo por entidad en 2024**
+
+En una comunidad indígena de Chiapas, una niña camina todos los días para llegar a la escuela. Aunque siempre va con el ánimo de aprender, muchas veces no comprende completamente las clases, ya que se imparten en español y su lengua materna es otra. Además, al llegar a casa, tiene que hacer rápidamente su tarea porque después debe salir a trabajar con su mamá, debido a que su familia cuenta con escasos recursos. 
+Esta hecho evidencia que el acceso a la educación no es igual para todos y depende de diversos factores sociales y económicos. Ante ello, surge una pregunta fundamental: ¿hasta qué punto el lugar donde nace una persona determina sus oportunidades educativas?
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Escuela_ind%C3%ADgena_en_el_Municipio_de_San_Jos%C3%A9_del_Rinc%C3%B3n.jpg" style="width: 500px;">
+<a href="https://commons.wikimedia.org/wiki/File:Escuela_ind%C3%ADgena_en_el_Municipio_de_San_Jos%C3%A9_del_Rinc%C3%B3n.jpg">Government of Mexico</a>, Public domain, via Wikimedia Commons
+
+```{python}
+#| scrolled: true
+ruta= "C:/Users/jaryp/Desktop/Codigo_G/datos/Rezago_educativo_entid.csv"
+df = pd.read_csv(ruta, encoding="latin1", index_col=0, skiprows=0)
+```
+
+```{python}
+fig = px.bar(df, x="Porcentaje", y= df.index, title="Rezago educativo por entidad 2024", color_discrete_sequence=['red'] ,height=1000)
+fig.update_xaxes(range=[5, 35], ticks="outside")
+```
+
+En el caso de las comunidades de Chiapas, el lugar de origen inlfuye en las oportunidades educativas. De acuerdo con datos del INEGI, el estado presenta uno de los niveles más altos de rezago educativo en el país. Las carencias sociales y su vulnerabilidad provoca que muchos estudiantes no puedan continuar con sus estudios.
+
+**Grado promedio de escolaridad por entidad en 2020**
+
+Se observa que entidades como Chiapas, Oaxaca y Guerrero presentan los niveles más altos de rezago educativo y el grado promedio de escolaridad son los más bajos en el país. Esto indica que el rezago educativo afecta principalmente a las regiones con mayores condiciones de vulnerabilidad y está fuertemente relacionado con factores como el desarrollo económico, el acceso a servicios educativos y las condiciones sociales.
+
+```{python}
+ruta= "C:/Users/jaryp/Desktop/Codigo_G/datos/Grad_prom_escol_entid.csv"
+df = pd.read_csv(ruta, encoding="latin1", index_col=0, skiprows=0)
+```
+
+El promedio de escolaridad en Chiapas es de apenas 8 años, lo que significa que muchas niñas y niños dejan de estudiar empezando la primaria. Esta situación refleja las dificultades que enfrentan miles de niñas, niños y jóvenes para permanecer en el sistema educativo, evidenciando una problemática que limita su desarrollo personal y sus oportunidades a futuro.
+
+# Lengua indígena
+
+:::: {.columns}
+
+::: {.column width="100%"}
+**Estados con mayor población que habla lengua indígena**
+
+El entorno en las aulas continúan con una barrera lingüística, cunado las niñas y niños llegan la etapa de la educación básica y en los centros educativos se encuentran con profesores que no hablan su lengua originaria. Esa diferencia no es menor, implica aprender en una lengua que no dominan completamente, lo que dificulta la comprensión y desempeño académico. Por lo tanto, la educación bilingüe es fundamental para mejorar el aprendizaje de niñas y niños indígenas.
+
+Estados con mayor población que habla lengua indígena
+```{python}
+ruta = "C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_Lengua_indigena.xlsx"
+df = pd.read_excel(ruta, index_col=0, skiprows=6)
+```
+```{python}
+df_filtrado= df.loc[["Chiapas", "Oaxaca", "Veracruz de Ignacio de la Llave"]]
+```
+```{python}
+fig = px.bar(df_filtrado, x="2020", y= df_filtrado.index, color_discrete_sequence=['yellow'],height=200)
+fig.update_xaxes(range=[500000, 1500000], ticks="outside")
+fig.show()
+```
+Chiapas, Oaxaca y Veracruz son los estados con mayor número de hablantes de lengua indígena en el país. En el caso de Chiapas, existen municipios con una alta concentración de población hablante de lenguas indígenas. 
+
+
+**Municipios de Chiapas con mayor población indígena**
+```{python}
+ruta= "C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_indigena_minicipio.csv"
+df = pd.read_csv(ruta, encoding="latin1", index_col=4, skiprows=0)
+```
+
+```{python}
+df_filtrado = df.loc[["Ocosingo", "Chilón", "San Cristóbal de las Casas","Chamula"]]
+```
+
+```{python}
+fig = px.bar(df_filtrado, x="Poblacion", y= df_filtrado.index, color_discrete_sequence=['blue'],height=100)
+fig.update_xaxes(range=[100000, 220000], ticks="outside")
+```
+
+**Municipios con mayor número de hablantes de lengua indígena en Chiapas**
+
+```{python}
+ruta= "C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_lengua_munic_Chiapas.csv"
+df = pd.read_csv(ruta, encoding="latin1", index_col=1, skiprows=3)
+```
+
+```{python}
+df = df.drop(["clave"],axis=1)
+```
+
+```{python}
+df_filtrado = df.loc[["Ocosingo", "Chilón", "Chamula"]]
+```
+
+```{python}
+fig = px.bar(df_filtrado, x="Población", y= df_filtrado.index, color_discrete_sequence=['purple'],height=100)
+fig
+```
+
+Los municipios con mayor población de hablantes de lengua indígena son Ocosingo, Chilón y Chamula, donde predominan lenguas como el tzeltal, el tzotzil y el ch´ol. Esta diversidad lingüística refleja una riqueza cultural importante, pero también evidencia desafíos en el acceso a una educación inclusiva.
+:::
+
+::: {.column width="100%"}
+**Municipios con mayor porcentanje de pobreza de la población indígena de Chiapas**
+
+En Chiapas, 8 de cada 10 personas indígenas viven en condiciones de pobreza, lo que limita las oportunidades educativas.
+
+```{python}
+ruta= "C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_Indgna_municipio_pobreza.csv"
+df = pd.read_csv(ruta, encoding="latin1", index_col=4, skiprows=0)
+```
+
+```{python}
+df1 = df.drop(['id','clave_entidad','Entidad_federativa','Clave_municipio','Grupo','poblacion'], axis =1 )
+```
+
+```{python}
+df_filtrado=  df1.loc[["San Juan Cancuc", "Chanal", "Aldama","Chalchihuitán","Chenalhó","San Andrés Duraznal","Mitontic","Oxchuc","Tila","Pantelhó"]]
+```
+
+```{python}
+fig = px.bar(df_filtrado, x='Pobreza',y= df_filtrado.index, color_discrete_sequence=['orange'])
+fig.update_xaxes(range=[97, 100])
+```
+
+Resulta preocupante observar que el porcentaje de pobreza de la población indígena en estos municipios es demasiado alto. Esta situación implica múltiples carencias que afectan directamente la posibilidad de acceder a una educación de calidad.Por un lado, la falta de recursos económicos limita el acceso a materiales escolares, transporte y alimentación adecuada, elementos básicos para el aprendizaje. Por otro, las condiciones de vida obligan a muchos niños y jóvenes a incorporarse al trabajo desde edades tempranas, reduciendo el tiempo y la energía que pueden dedicar a sus estudios.
+
+ <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Mujeres_Ind%C3%ADgenas_en_San_Juan_Chamula.jpg" style="width: 400px ;">
+
+<a href="https://commons.wikimedia.org/wiki/File:Mujeres_Ind%C3%ADgenas_en_San_Juan_Chamula.jpg">WendyAvilesR</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons
+
+Esta realidad evidencia una profunda desigualdad, mientras algunos estudiantes cuentan con recursos y apoyos, otros enfrentan múltiples barreras desde el inicio, lo que convierte la educación en un privilegio más que un derecho garantizado.
+:::
+::::
+
+# Servicios educativos 
+## Column {width=50%}
+::: {.card}
+**Servicios educativos que presta educación indígena en diversos municipios del estado de Chiapas**
+
+```{python}
+ruta = "C:/Users/jaryp/Desktop/Codigo_G/datos/Serv_educa_presta_edu_indgna.xlsx"
+df = pd.read_excel(ruta, index_col=0, skiprows=0)
+```
+
+```{python}
+#| scrolled: true
+df.plot.bar(stacked=True, figsize=(12,6), title="Prestan educación indígena");
+```
+:::
+
+A pesar de este panorama, existen esfuerzos orientados a mejorar la situación educativa en las comunidades indígenas, como los programas de educación bilingüe. Estos avances resultan aún limitados frente a la magnitud del problema. Esta realidad invita a reflexionar sobre la necesidad de fortalecer políticas educativas verdaderamente incluyentes, que reconozcan y atiendan las condiciones sociales, culturales y lingüísticas de estas comunidades. Solo así será posible avanzar hacia una educación que no sea un privilegio de unos cuantos, sino un derecho efectivo y garantizado para todos.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Misi%C3%B3n_OMS_Chimix_Chiapas_M%C3%A9xico.jpg" style="width: 500px;">
+<a href="https://commons.wikimedia.org/wiki/File:Misi%C3%B3n_OMS_Chimix_Chiapas_M%C3%A9xico.jpg">Lyarzabal</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons
+
+Es momento de dejar de observar la crisis educativa en Chiapas como un fenómeno distante. Frente a esta realidad, la educación en comunidades indígenas de Chiapas deja de ser solo un problema social y se convierte en una responsabilidad compartida. El rezago educativo es consecuencias de las condiciones sociales y económicas en las que viven muchas personas. Como sociedad tenemos que exigir mejores políticas educativas para contribuir a reducir estas brechas.
+La educación de calidad no debería depender del lugar donde nace, sino ser un derecho garantizado para todos.
+
+**¿Qué futuro estamos construyendo si no todos tienen las mismas oportunidades de aprender?**
+
