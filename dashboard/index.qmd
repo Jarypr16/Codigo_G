@@ -5,7 +5,7 @@ logo: img/logo.png
 format:
   dashboard:
     orientation: rows
-jupyter: .venv
+jupyter: codigo-g
 theme: 
     light: Cerulean
     dark: Cyborg   
