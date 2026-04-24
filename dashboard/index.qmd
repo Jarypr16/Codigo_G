@@ -15,17 +15,20 @@ navbar:
     - text: "Inicio"
       href: "#inicio"
 
-    - text: "2"
+    - text: "1"
       href: "#rezago-educativo"
 
-    - text: "3"
+    - text: "2"
       href: "#lengua-indigena"
 
-    - text: "4"
+    - text: "3"
       href: "#trabajo-infantil"
 
-    - text: "5"
+    - text: "4"
       href: "#servicios-educativos"
+
+    - text: "5"
+      href: "#agradecimientos"
 ---
 
 ## 0. Activar librerías
@@ -441,7 +444,7 @@ Priorizar la inversión en la educación indígena, mejorar la infraestructura e
 [**¿Qué futuro estamos construyendo si no todos tienen las mismas oportunidades educativas?**]{.texto-azul-marino}
 :::
 
-# 5
+# 5 {#agradecimientos}
 ::: {style="background-color: #70102f; padding: 1rem 1.5rem; border-radius: 6px;"}
 [**Agradecimientos**]{.texto-blanco  .texto-grande}
 :::

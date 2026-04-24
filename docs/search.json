@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "",
+    "text": "import plotly.graph_objects as go\nimport pandas as pd\nfrom pathlib import Path\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport plotly.express as px"
+  },
+  {
+    "objectID": "index.html#activar-librerías",
+    "href": "index.html#activar-librerías",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "",
+    "text": "import plotly.graph_objects as go\nimport pandas as pd\nfrom pathlib import Path\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport plotly.express as px"
+  },
+  {
+    "objectID": "index.html#row",
+    "href": "index.html#row",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nMás allá de las barreras\nEn una comunidad indígena de Chiapas, Nikté camina todos los días para llegar a la escuela. Su entusiasmo por aprender son grandes, pero se enfrenta con la dificultad de que sus clases se imparten en español y su lengua materna es el tzeltal. Al salir de la escuela se dirige a su casa, donde aprende a hacer artesanías para después salir a vender, esto provoca que el tiempo para estudiar sea limitado, además que en su comunidad no cuenta con el Servicio de Energía Eléctrica. Este hecho evidencia que el acceso a la educación no es igual para todos y depende de diversos factores sociales y económicos. Ante ello, surge una pregunta fundamental:\n¿Hasta qué punto el lugar donde nace una persona determina sus oportunidades educativas?\n\n        \n\nUna realidad que muchos no ven"
+  },
+  {
+    "objectID": "index.html#row-1",
+    "href": "index.html#row-1",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nRezago educativo\nPorcentaje de rezago educativo por entidad en 2024"
+  },
+  {
+    "objectID": "index.html#row-2",
+    "href": "index.html#row-2",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\nDe acuerdo con datos del INEGI, en el estado de Chiapas el 34 % de la población estatal (5,543,828) presenta uno de los niveles más altos de rezago educativo en el país. Las carencias sociales y su vulnerabilidad provoca que muchos estudiantes no puedan continuar con sus estudios.\nGrado promedio de escolaridad por entidad en 2020\nEntidades como Chiapas, Oaxaca y Guerrero presentan los niveles más altos de rezago educativo y el grado promedio de escolaridad son los más bajos en el país. Esto indica que el rezago educativo afecta principalmente a las regiones con mayores condiciones de vulnerabilidad y está fuertemente relacionado con factores como el desarrollo económico, el acceso a servicios educativos y las condiciones sociales.\n\nruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Grad_prom_escol_entid.csv\"\ndf = pd.read_csv(ruta, encoding=\"latin1\", index_col=0, skiprows=0)\n\nEl promedio de escolaridad en Chiapas es de apenas 8 años, lo que significa que muchas niñas y niños dejan de estudiar empezando la primaria. Esta situación refleja las dificultades que enfrentan miles de niñas, niños y jóvenes para permanecer en el sistema educativo, evidenciando una problemática que limita su desarrollo personal y sus oportunidades a futuro.\nVideo\nNiñez en dos mundos: trabajo y aprendizaje\n\nruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Rezago_educativo_entid.csv\"\ndf = pd.read_csv(ruta, encoding=\"latin1\", index_col=0, skiprows=0)\n\n\nfig = px.bar(df, x=\"Porcentaje\", y= df.index, title=\"Rezago educativo por entidad 2024\", color_discrete_sequence=['red'] ,height=1000)\nfig.update_xaxes(range=[5, 35], ticks=\"outside\")\n\n                            \n                                            \nFuente: INEGI. Elaboración propia."
+  },
+  {
+    "objectID": "index.html#row-3",
+    "href": "index.html#row-3",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nLengua indígena\nEstados con mayor población que habla lengua indígena\nEl entorno en las aulas continúan con una barrera lingüística, cuando las niñas y niños llegan la etapa de la educación básica y en los centros educativos se encuentran con profesores que no hablan su lengua originaria. Esa diferencia no es menor, implica aprender en una lengua que no dominan completamente, lo que dificulta la comprensión y desempeño académico. Por lo tanto, la educación bilingüe es fundamental para mejorar el aprendizaje de niñas y niños indígenas.\n\nruta = \"C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_Lengua_indigena.xlsx\"\ndf = pd.read_excel(ruta, index_col=0, skiprows=6)\n\n\ndf_filtrado= df.loc[[\"Chiapas\", \"Oaxaca\", \"Veracruz de Ignacio de la Llave\"]]\n\n\nfig = px.bar(df_filtrado, x=\"2020\", y= df_filtrado.index, color_discrete_sequence=['yellow'],height=200)\nfig.update_xaxes(range=[500000, 1500000], ticks=\"outside\")\n\n                            \n                                            \nFuente: Datos Abiertos de México. Elaboración propia.\n\n\nChiapas, Oaxaca y Veracruz son los estados con mayor número de hablantes de lengua indígena en el país. En el caso de Chiapas, existen municipios con una alta concentración de población hablante de lenguas indígenas."
+  },
+  {
+    "objectID": "index.html#row-4",
+    "href": "index.html#row-4",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nColumn\n\nrow\n\nMunicipios de Chiapas con mayor población indígena\n\nruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_indigena_minicipio.csv\"\ndf = pd.read_csv(ruta, encoding=\"latin1\", index_col=4, skiprows=0)\n\n\ndf_filtrado = df.loc[[\"Ocosingo\", \"Chilón\", \"San Cristóbal de las Casas\",\"Chamula\"]]\n\n\nfig = px.bar(df_filtrado, x=\"Poblacion\", y= df_filtrado.index, color_discrete_sequence=['blue'],height=100)\nfig.update_xaxes(range=[100000, 220000], ticks=\"outside\")\n\n                            \n                                            \nFuente: Datos Abiertos de México. Elaboración propia.\n\n\n\n\n\nrow\n\nMunicipios con mayor número de hablantes de lengua indígena en Chiapas\n\nruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_lengua_munic_Chiapas.csv\"\ndf = pd.read_csv(ruta, encoding=\"latin1\", index_col=1, skiprows=3)\n\n\ndf = df.drop([\"clave\"],axis=1)\n\n\ndf_filtrado = df.loc[[\"Ocosingo\", \"Chilón\", \"Chamula\"]]\n\n\nfig = px.bar(df_filtrado, x=\"Población\", y= df_filtrado.index, color_discrete_sequence=['purple'],height=100)\nfig\n\n                            \n                                            \nFuente: INEGI. Elaboración propia.\n\n\nLos municipios con mayor población de hablantes de lengua indígena son Ocosingo, Chilón y Chamula, donde predominan lenguas como el tzeltal, el tzotzil y el ch´ol. Esta diversidad lingüística refleja una riqueza cultural importante, pero también evidencia desafíos en el acceso a una educación inclusiva.\n\n\n\n\nColumn\n\nMunicipios con mayor porcentanje de pobreza de la población indígena de Chiapas\nLa pobreza no solo alude la falta de ingresos, sino también va relacionado con las condiciones de vida, que vulneran la dignidad y limitan los derechos de las personas.\nEn Chiapas, 8 de cada 10 personas indígenas viven en condiciones de pobreza, lo que limita las oportunidades educativas. De los 4,958,239 pobladores indígenas, 3,966,591 pobladores son pobres.\n\nruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_Indgna_municipio_pobreza.csv\"\ndf = pd.read_csv(ruta, encoding=\"latin1\", index_col=4, skiprows=0)\n\n\ndf1 = df.drop(['id','clave_entidad','Entidad_federativa','Clave_municipio','Grupo','poblacion'], axis =1 )\n\n\ndf_filtrado=  df1.loc[[\"San Juan Cancuc\", \"Chanal\", \"Aldama\",\"Chalchihuitán\",\"Chenalhó\",\"San Andrés Duraznal\",\"Mitontic\",\"Oxchuc\",\"Tila\",\"Pantelhó\"]]\n\n\nfig = px.bar(df_filtrado, x='Pobreza',y= df_filtrado.index, color_discrete_sequence=['orange'])\nfig.update_xaxes(range=[97, 100])\n\n                            \n                                            \nFuente: Datos Abiertos de México. Elaboración propia.\n\n\nResulta preocupante observar que el porcentaje de pobreza de la población indígena en estos municipios es demasiado alto. Esta situación implica múltiples carencias que afectan directamente la posibilidad de acceder a una educación de calidad. Por un lado, la falta de recursos económicos limita el acceso a materiales escolares, transporte y alimentación adecuada, elementos básicos para el aprendizaje. Por otro, las condiciones de vida obligan a muchos niños y jóvenes a incorporarse al trabajo desde edades tempranas, reduciendo el tiempo y la energía que pueden dedicar a sus estudios.\n\nMujeres Indígenas en San Juan Chamula"
+  },
+  {
+    "objectID": "index.html#row-7",
+    "href": "index.html#row-7",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nRezago habitacional"
+  },
+  {
+    "objectID": "index.html#row-8",
+    "href": "index.html#row-8",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\nSe define como “el número de viviendas con materiales precarios en pisos, techos y muros, que no cuentan con excusado o aquellas cuyos residentes habitan en hacinamiento”.\n\nChamulaChilónOcosingo\n\n\n\n\n\ndict(\n  color = \"success\",\n  icon = \"house\",\n  value = \"22,604\"\n )\n\n{'color': 'success', 'icon': 'house', 'value': '22,604'}\n\n\n\n\ndict(\n  color = \"secondary\",\n  icon = \"house-dash\",\n  value = \"16,729\"\n )\n\n{'color': 'secondary', 'icon': 'house-dash', 'value': '16,729'}\n\n\n\n\ndict(\n  color = \"dark\",\n  value = \"74%\",\n  icon = \"percent\"\n)\n\n{'color': 'dark', 'value': '74%', 'icon': 'percent'}\n\n\n\n\n\n\n\n\n\ndict(\n  color = \"success\",\n  icon = \"house\",\n  value = \"25,759 \"\n )\n\n{'color': 'success', 'icon': 'house', 'value': '25,759 '}\n\n\n\n\ndict(\n  color = \"secondary\",\n  icon = \"house-dash\",\n  value = \"24,928\"\n )\n\n{'color': 'secondary', 'icon': 'house-dash', 'value': '24,928'}\n\n\n\n\ndict(\n  color = \"dark\",\n  value = \"96.8% \",\n  icon = \"percent\"\n)\n\n{'color': 'dark', 'value': '96.8% ', 'icon': 'percent'}\n\n\n\n\n\n\n\n\n\ndict(\n  color = \"success\",\n  icon = \"house\",\n  value = \"45,868\"\n )\n\n{'color': 'success', 'icon': 'house', 'value': '45,868'}\n\n\n\n\ndict(\n  color = \"secondary\",\n  icon = \"house-dash\",\n  value = \"39,462\"\n )\n\n{'color': 'secondary', 'icon': 'house-dash', 'value': '39,462'}\n\n\n\n\ndict(\n  color = \"dark\",\n  value = \"86%\",\n  icon = \"percent\"\n)\n\n{'color': 'dark', 'value': '86%', 'icon': 'percent'}"
+  },
+  {
+    "objectID": "index.html#row-9",
+    "href": "index.html#row-9",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nTrabajo infantil"
+  },
+  {
+    "objectID": "index.html#row-10",
+    "href": "index.html#row-10",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nColumn\n\nEn 2022, en Chiapas, habían 1,626,601 niñas, niños y adolescentes que tenían entre 5 y 17 años. Del total estatal se registraron 228,406 personas en este rango de edad que desempeñaban alguna ocupación,correspondiente al 14.04% del valor estatal. 7 de cada 10 trabaja en el sector agrícola, 2 de cada 10 en el sector comercio y servicios, y 1 de cada 10 en la industria y construcción. Los niñas, niños y adolescentes inadígenas son los principales en sufrir este problema, ya que el sector agrícola es preponderante en su zona, y por su tradición y cultura es común observarlos vender sus productos artesanales.\nVideo\nEntre hilos y esperanza: crecer trabajando\n\n\n\nColumn\n\nAdemás de la pobreza y las necesidades económicas, hay otras causas detrás del trabajo infantil.En el ámbito rural y en las familias indígenas se considera que el trabajo es benéfico para el sano desarrollo de NNA, ya que los sitúa frente a responsabilidades, los ayuda a madurar y les aporta una experiencia de aprendizaje que difícilmente podrían obtener en la escuela, la casa o en el espacio recreativo.\nEsta realidad evidencia una profunda desigualdad, mientras algunos estudiantes cuentan con recursos y apoyos, otros enfrentan múltiples barreras desde el inicio, lo que convierte la educación en un privilegio más que un derecho garantizado.\n\nVendedores en el mercado de San Juan Chamula,Chiapas"
+  },
+  {
+    "objectID": "index.html#row-11",
+    "href": "index.html#row-11",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nServicios educativos que presta educación indígena en diversos municipios del estado de Chiapas\n\nruta = \"C:/Users/jaryp/Desktop/Codigo_G/datos/Serv_educa_presta_edu_indgna.xlsx\"\ndf = pd.read_excel(ruta, index_col=0, skiprows=0)\n\n\ndf.plot.bar(stacked=True, figsize=(12,6), title=\"Prestan educación indígena\");\n\n\n\n\nFuente:Dirección de Educación Indígena. Elaboración propia.\n\n\n\n\nChilón y Ocosingo son los municipios en los que la implementación del servicio educativo indígena en instalaciones tanto inicial, preescolar, primaria y albergues. A pesar de ello la educación de calidad escaso."
+  },
+  {
+    "objectID": "index.html#row-12",
+    "href": "index.html#row-12",
+    "title": "Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas",
+    "section": "Row",
+    "text": "Row\n\nColumn\n\nExisten esfuerzos orientados a mejorar la situación educativa en las comunidades indígenas, como los programas de educación bilingüe. Estos avances resultan aún limitados frente a la magnitud del problema. Esta realidad invita a reflexionar sobre la necesidad de fortalecer políticas educativas verdaderamente incluyentes, que reconozcan y atiendan las condiciones sociales, culturales y lingüísticas de estas comunidades. Solo así será posible avanzar hacia una educación que no sea un privilegio de unos cuantos, sino un derecho efectivo y garantizado para todos.\n\nEcuela indígena Chimix, Chiapas\nEs momento de dejar de observar la crisis educativa en Chiapas como un fenómeno distante. Frente a esta realidad, la educación en comunidades indígenas de Chiapas deja de ser solo un problema social y se convierte en una responsabilidad compartida. El rezago educativo es consecuencias de las condiciones sociales y económicas en las que viven muchas personas. Como sociedad tenemos que exigir mejores políticas educativas para contribuir a reducir estas brechas. La educación de calidad no debería depender del lugar donde nace, sino ser un derecho garantizado para todos.\n\n\n\nColumn\n\n¿Qué podemos hacer?\nFortalecer la educación mediante la estrategia de profesionalización docente en lenguas indígenas, para combatir la exclusión de la población indígena en la educación. Ofrecer una educación con enfoque intercultural y bilingüe, que ayude a disminuir la deserción de la población indígena en nivel básico. Implementar programas de las lenguas indígenas, incluyendo a todos los pueblos originarios a tener su derecho a una educación de calidad. Priorizar la inversión en la educación indígena, mejorar la infraestructura escolar básica y equiparlos con un buen mobiliario escolar.\n¿Qué futuro estamos construyendo si no todos tienen las mismas oportunidades educativas?"
+  }
+]
