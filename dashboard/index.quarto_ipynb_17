@@ -1,0 +1,763 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Más allá de las barreras: la educación como esperanza en las comunidades indígenas de Chiapas\"\n",
+        "author: \"E. Montejo, J. Pérez & J. F. Pérez\"\n",
+        "logo: img/logo.png\n",
+        "format: \n",
+        "  dashboard:\n",
+        "    fill: true\n",
+        "    theme:\n",
+        "      light: Minty\n",
+        "      dark: Superhero\n",
+        "    css: styles.css\n",
+        "jupyter: python3\n",
+        "navbar:\n",
+        "  left:\n",
+        "    - text: \"Inicio\"\n",
+        "      href: \"#inicio\"\n",
+        "\n",
+        "    - text: \"2\"\n",
+        "      href: \"#rezago-educativo\"\n",
+        "\n",
+        "    - text: \"3\"\n",
+        "      href: \"#lengua-indigena\"\n",
+        "\n",
+        "    - text: \"4\"\n",
+        "      href: \"#trabajo-infantil\"\n",
+        "\n",
+        "    - text: \"5\"\n",
+        "      href: \"#servicios-educativos\"\n",
+        "---\n",
+        "\n",
+        "## 0. Activar librerías"
+      ],
+      "id": "4313ae86"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import plotly.graph_objects as go\n",
+        "import pandas as pd\n",
+        "from pathlib import Path\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import plotly.express as px"
+      ],
+      "id": "ce9f5198",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Inicio {#inicio}\n",
+        "\n",
+        "## Row {height=700px}\n",
+        "\n",
+        "::: {style=\"text-align: center; padding: 2rem;\"}\n",
+        "\n",
+        "[**Más allá de las barreras**]{.texto-guinda .texto-titulo}\n",
+        "\n",
+        "[**En una comunidad indígena de Chiapas, Nikté camina todos los días para llegar a la escuela. Su entusiasmo por aprender son grandes, pero se enfrenta con la dificultad de que sus clases se imparten en español y su lengua materna es el tzeltal. Al salir de la escuela se dirige a su casa, donde aprende a hacer artesanías para después salir a vender, esto provoca que el tiempo para estudiar sea limitado, además que en su comunidad no cuenta con el Servicio de Energía Eléctrica.\n",
+        "Esta hecho evidencia que el acceso a la educación no es igual para todos y depende de diversos factores sociales y económicos. Ante ello, surge una pregunta fundamental:**]{.texto-negro .texto-normal}\n",
+        "\n",
+        "[**¿Hasta qué punto el lugar donde nace una persona determina sus oportunidades educativas?**]{style=\"color: #f2c1c1 !important; font-size: 1.2rem; display: block; font-style: italic;\"}\n",
+        "\n",
+        "\n",
+        "::: {.slider}\n",
+        "![](img/imagen2.jpeg)\n",
+        "![](img/imagen3.jpeg)\n",
+        "![](img/imagen4.jpeg)\n",
+        "![](img/imagen5.jpeg)\n",
+        "![](img/lacandones.jpeg)\n",
+        "![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Ni%C3%B1a_vendiendo_artesan%C3%ADa.jpg/1920px-Ni%C3%B1a_vendiendo_artesan%C3%ADa.jpg?_=20200509152520)\n",
+        "![](https://upload.wikimedia.org/wikipedia/commons/d/da/Vendedora_en_carmes%C3%AD.jpg?_=20200503235033)\n",
+        "![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/La_herencia.jpg/1920px-La_herencia.jpg?_=20200531062437)\n",
+        "![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/200102_MG_2263.jpg/1920px-200102_MG_2263.jpg?_=20200530034510)\n",
+        ":::\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "# 1 {#rezago-educativo}\n",
+        "## Row {height=150px}\n",
+        "::: {style=\"background-color: #008B8B; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "\n",
+        "[**Rezago educativo**]{style=\"color: white !important; font-size: 1.8rem; display: block;\"}\n",
+        "\n",
+        "[Porcentaje de rezago educativo por entidad en 2024]{style=\"color: white !important; font-size: 0.9rem; display: block;\"}\n",
+        ":::\n",
+        "## Row {height=700px}\n",
+        "\n",
+        "De acuerdo con datos del INEGI, en el estado de **Chiapas** el **34 %** de la pobleción estatal (**5,543,828**) presenta uno de los niveles más altos de rezago educativo en el país. Las carencias sociales y su vulnerabilidad provoca que muchos estudiantes no puedan continuar con sus estudios.\n",
+        "\n",
+        "[**Grado promedio de escolaridad por entidad en 2020**]{.texto-guinda .texto-grande}\n",
+        "\n",
+        "Entidades como **Chiapas**, Oaxaca y Guerrero presentan los niveles más altos de rezago educativo y el grado promedio de escolaridad son los más bajos en el país. Esto indica que el rezago educativo afecta principalmente a las regiones con mayores condiciones de vulnerabilidad y está fuertemente relacionado con factores como el desarrollo económico, el acceso a servicios educativos y las condiciones sociales."
+      ],
+      "id": "67897676"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Grad_prom_escol_entid.csv\"\n",
+        "df = pd.read_csv(ruta, encoding=\"latin1\", index_col=0, skiprows=0)"
+      ],
+      "id": "a615d3a0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "El promedio de escolaridad en **Chiapas** es de apenas **8 años**, lo que significa que muchas niñas y niños dejan de estudiar empezando la primaria. Esta situación refleja las dificultades que enfrentan miles de niñas, niños y jóvenes para permanecer en el sistema educativo, evidenciando una problemática que limita su desarrollo personal y sus oportunidades a futuro.\n",
+        "\n",
+        "![](mp4/video2.mp4){height=300px}"
+      ],
+      "id": "07ef07e2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "scrolled": true
+      },
+      "source": [
+        "ruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Rezago_educativo_entid.csv\"\n",
+        "df = pd.read_csv(ruta, encoding=\"latin1\", index_col=0, skiprows=0)"
+      ],
+      "id": "f91848dd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = px.bar(df, x=\"Porcentaje\", y= df.index, title=\"Rezago educativo por entidad 2024\", color_discrete_sequence=['red'] ,height=1000)\n",
+        "fig.update_xaxes(range=[5, 35], ticks=\"outside\")"
+      ],
+      "id": "7bcbdb7e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 2 {#lengua-indigena}\n",
+        "## Row {height=600px}\n",
+        "::: {style=\"background-color: #D3D3D3; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "**Lengua indígena**\n",
+        "\n",
+        "[**Estados con mayor población que habla lengua indígena**]{.texto-guinda .texto-grande}\n",
+        "\n",
+        "El entorno en las aulas continúan con una barrera lingüística, cunado las niñas y niños llegan la etapa de la educación básica y en los centros educativos se encuentran con profesores que no hablan su lengua originaria. Esa diferencia no es menor, implica aprender en una lengua que no dominan completamente, lo que dificulta la comprensión y desempeño académico. Por lo tanto, la educación bilingüe es fundamental para mejorar el aprendizaje de niñas y niños indígenas."
+      ],
+      "id": "14449e94"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ruta = \"C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_Lengua_indigena.xlsx\"\n",
+        "df = pd.read_excel(ruta, index_col=0, skiprows=6)"
+      ],
+      "id": "1701f8c2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df_filtrado= df.loc[[\"Chiapas\", \"Oaxaca\", \"Veracruz de Ignacio de la Llave\"]]"
+      ],
+      "id": "293aad3c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = px.bar(df_filtrado, x=\"2020\", y= df_filtrado.index, color_discrete_sequence=['yellow'],height=200)\n",
+        "fig.update_xaxes(range=[500000, 1500000], ticks=\"outside\")"
+      ],
+      "id": "388aff3a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**Chiapas**, Oaxaca y Veracruz son los estados con mayor número de hablantes de lengua indígena en el país. En el caso de Chiapas, existen municipios con una alta concentración de población hablante de lenguas indígenas.\n",
+        ":::\n",
+        "\n",
+        "## Row {height=1300px}\n",
+        "### Column {width=60%}\n",
+        "#### row {height=\"50%\"}\n",
+        "::: {style=\"background-color: #e0d8d8; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "\n",
+        "[**Municipios de Chiapas con mayor población indígena**]{.texto-guinda .texto-grande}"
+      ],
+      "id": "2939cfb3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_indigena_minicipio.csv\"\n",
+        "df = pd.read_csv(ruta, encoding=\"latin1\", index_col=4, skiprows=0)"
+      ],
+      "id": "137ab33b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df_filtrado = df.loc[[\"Ocosingo\", \"Chilón\", \"San Cristóbal de las Casas\",\"Chamula\"]]"
+      ],
+      "id": "3afb07f3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = px.bar(df_filtrado, x=\"Poblacion\", y= df_filtrado.index, color_discrete_sequence=['blue'],height=100)\n",
+        "fig.update_xaxes(range=[100000, 220000], ticks=\"outside\")"
+      ],
+      "id": "d67c189a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "#### row {height=\"50%\"}\n",
+        "::: {style=\"background-color: #e0d8d8; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "\n",
+        "[**Municipios con mayor número de hablantes de lengua indígena en Chiapas**]{.texto-guinda .texto-grande}"
+      ],
+      "id": "cbcc0ccc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_lengua_munic_Chiapas.csv\"\n",
+        "df = pd.read_csv(ruta, encoding=\"latin1\", index_col=1, skiprows=3)"
+      ],
+      "id": "1beb710a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df = df.drop([\"clave\"],axis=1)"
+      ],
+      "id": "12d8027c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df_filtrado = df.loc[[\"Ocosingo\", \"Chilón\", \"Chamula\"]]"
+      ],
+      "id": "dfb44d30",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = px.bar(df_filtrado, x=\"Población\", y= df_filtrado.index, color_discrete_sequence=['purple'],height=100)"
+      ],
+      "id": "805a7522",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Los municipios con mayor población de hablantes de lengua indígena son **Ocosingo, Chilón y Chamula**, donde predominan lenguas como el **tzeltal, el tzotzil y el ch´ol**. Esta diversidad lingüística refleja una riqueza cultural importante, pero también evidencia desafíos en el acceso a una educación inclusiva.\n",
+        ":::\n",
+        "\n",
+        "\n",
+        "### Column {width=60%}\n",
+        "::: {style=\"background-color: #beb7b7; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "\n",
+        "[**Municipios con mayor porcentanje de pobreza de la población indígena de Chiapas**]{.texto-guinda .texto-grande}\n",
+        "\n",
+        "La pobreza no solo alude la falta de ingresos, sino también va relacionado con las condiciones de vida, que vulneran la dignidad y limitan los derechos de las personas. \n",
+        "\n",
+        "**En Chiapas, 8 de cada 10 personas indígenas**  viven en condiciones de **pobreza**, lo que limita las oportunidades educativas. De los 4,958,239 pobladores indígenas, 3,966,591 pobladores son pobres."
+      ],
+      "id": "a175a30a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ruta= \"C:/Users/jaryp/Desktop/Codigo_G/datos/Pob_Indgna_municipio_pobreza.csv\"\n",
+        "df = pd.read_csv(ruta, encoding=\"latin1\", index_col=4, skiprows=0)"
+      ],
+      "id": "7d4e4435",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df1 = df.drop(['id','clave_entidad','Entidad_federativa','Clave_municipio','Grupo','poblacion'], axis =1 )"
+      ],
+      "id": "e96c9ef6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df_filtrado=  df1.loc[[\"San Juan Cancuc\", \"Chanal\", \"Aldama\",\"Chalchihuitán\",\"Chenalhó\",\"San Andrés Duraznal\",\"Mitontic\",\"Oxchuc\",\"Tila\",\"Pantelhó\"]]"
+      ],
+      "id": "7ddb05ce",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig = px.bar(df_filtrado, x='Pobreza',y= df_filtrado.index, color_discrete_sequence=['orange'])\n",
+        "fig.update_xaxes(range=[97, 100])"
+      ],
+      "id": "f677a9df",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Resulta preocupante observar que el porcentaje de pobreza de la población indígena en estos municipios es demasiado alto. Esta situación implica múltiples carencias que afectan directamente la posibilidad de acceder a una educación de calidad. Por un lado, la falta de recursos económicos limita el acceso a materiales escolares, transporte y alimentación adecuada, elementos básicos para el aprendizaje. Por otro, las condiciones de vida obligan a muchos niños y jóvenes a incorporarse al trabajo desde edades tempranas, reduciendo el tiempo y la energía que pueden dedicar a sus estudios.\n",
+        "\n",
+        "![](https://upload.wikimedia.org/wikipedia/commons/8/85/Mujeres_Ind%C3%ADgenas_en_San_Juan_Chamula.jpg){width=50% style=\"display: block; margin-left: auto; margin-right: auto;\"}\n",
+        "\n",
+        "[Mujeres Indígenas en San Juan Chamula](https://commons.wikimedia.org/wiki/File:Mujeres_Ind%C3%ADgenas_en_San_Juan_Chamula.jpg)\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "# 3 {#trabajo-infantil}\n",
+        "\n",
+        "\n",
+        "## Row {height=100px}\n",
+        "::: {style=\"background-color: #62bebe; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "[**Rezago habitacional**]{.texto-blanco  .texto-grande}\n",
+        ":::\n",
+        "\n",
+        "## Row {height=400px}\n",
+        "Se define como *“el número de viviendas con materiales precarios en pisos, techos y muros, que no cuentan con excusado o aquellas cuyos residentes habitan en hacinamiento”*.\n",
+        "\n",
+        "::: {.panel-tabset}\n",
+        "\n",
+        "## Chamula\n",
+        "\n",
+        "::: columns\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "e31aee8b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Total de viviendas"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"success\",\n",
+        "  icon = \"house\",\n",
+        "  value = \"22,604\"\n",
+        " )"
+      ],
+      "id": "ccc9718b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "1e6ed67c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Viviendas en rezago habitacional"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"secondary\",\n",
+        "  icon = \"house-dash\",\n",
+        "  value = \"16,729\"\n",
+        " )"
+      ],
+      "id": "bc579f03",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "b987037d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Porcentaje de total de viviendas Rezago habitacional"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"dark\",\n",
+        "  value = \"74%\",\n",
+        "  icon = \"percent\"\n",
+        ")"
+      ],
+      "id": "58cf3696",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "\n",
+        "## Chilón\n",
+        "\n",
+        "::: columns\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "829a3f24"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Total de viviendas"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"success\",\n",
+        "  icon = \"house\",\n",
+        "  value = \"25,759 \"\n",
+        " )"
+      ],
+      "id": "1b981a5a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "753584a1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Viviendas en rezago habitacional"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"secondary\",\n",
+        "  icon = \"house-dash\",\n",
+        "  value = \"24,928\"\n",
+        " )"
+      ],
+      "id": "9ba20170",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "4523ec76"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Porcentaje de total de viviendas Rezago habitacional"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"dark\",\n",
+        "  value = \"96.8% \",\n",
+        "  icon = \"percent\"\n",
+        ")"
+      ],
+      "id": "92d91aac",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "\n",
+        "## Ocosingo\n",
+        "\n",
+        "::: columns\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "141d984e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Total de viviendas"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"success\",\n",
+        "  icon = \"house\",\n",
+        "  value = \"45,868\"\n",
+        " )"
+      ],
+      "id": "10fdbc38",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "a69947e8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Viviendas en rezago habitacional"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"secondary\",\n",
+        "  icon = \"house-dash\",\n",
+        "  value = \"39,462\"\n",
+        " )"
+      ],
+      "id": "58bf7459",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "::: column"
+      ],
+      "id": "1f111c2d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "content": "valuebox",
+        "title": "Porcentaje de total de viviendas Rezago habitacional"
+      },
+      "source": [
+        "dict(\n",
+        "  color = \"dark\",\n",
+        "  value = \"86%\",\n",
+        "  icon = \"percent\"\n",
+        ")"
+      ],
+      "id": "d4a95dfc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        ":::\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "## Row {height=100px}\n",
+        "::: {style=\"background-color: #62bebe; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "\n",
+        "[**Trabajo infantil**]{.texto-blanco  .texto-grande}\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "## Row {height=1200px}\n",
+        "### Column {width=50%}\n",
+        "::: {style=\"background-color: #65bfc479; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "En 2022, en **Chiapas**, habían 1,626,601 **niñas, niños y adolescentes** que tenían entre 5 y 17 años. Del total estatal se registraron **228,406 personas** en este rango de edad que desempeñaban alguna ocupación,correspondiente al **14.04%** del valor estatal.\n",
+        "**7 de cada 10** trabaja en el *sector agrícola*, **2 de cada 10** en el *sector comercio y servicios*, y **1 de cada 10** en la *industria y construcción*.\n",
+        "Los **niñas, niños y adolescentes inadígenas** son los principales en sufrir este problema, ya que el sector agrícola es preponderante en su zona, y por su tradición y cultura es común observarlos vender sus productos artesanales. \n",
+        "\n",
+        "![](mp4/video1.mp4){width=50% style=\"display: block; margin-left: auto; margin-right: auto;\"}\n",
+        ":::\n",
+        "\n",
+        "### Column {width=50%}\n",
+        "::: {style=\"background-color: #65bfc479; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "Además de la pobreza y las necesidades económicas, hay otras causas detrás del trabajo infantil.En el ámbito rural y en las familias indígenas se considera que el trabajo es benéfico para el sano desarrollo de **NNA**, ya que los sitúa frente a responsabilidades, los ayuda a madurar y les aporta una experiencia de aprendizaje que difícilmente podrían obtener en la escuela, la casa o en el espacio recreativo.\n",
+        "\n",
+        "Esta realidad evidencia una profunda desigualdad, mientras algunos estudiantes cuentan con recursos y apoyos, otros enfrentan múltiples barreras desde el inicio, lo que convierte la educación en un privilegio más que un derecho garantizado.\n",
+        "\n",
+        "![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Futuro_De_M%C3%A9xico.jpg/1920px-Futuro_De_M%C3%A9xico.jpg?_=20200531223806){width=80% style=\"display: block; margin-left: auto; margin-right: auto;\"}\n",
+        ":::\n",
+        "\n",
+        "# 4 {#servicios-educativos}\n",
+        "## Row {height=600px}\n",
+        "::: {style=\"background-color: #78143e7f; padding: 1rem 1.5rem; border-radius: 5px;\"}\n",
+        "[**Servicios educativos que presta educación indígena en diversos municipios del estado de Chiapas**]{.texto-blanco  .texto-grande}"
+      ],
+      "id": "a339de23"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ruta = \"C:/Users/jaryp/Desktop/Codigo_G/datos/Serv_educa_presta_edu_indgna.xlsx\"\n",
+        "df = pd.read_excel(ruta, index_col=0, skiprows=0)"
+      ],
+      "id": "5dd87fc4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "scrolled": true
+      },
+      "source": [
+        "df.plot.bar(stacked=True, figsize=(12,6), title=\"Prestan educación indígena\");"
+      ],
+      "id": "a534a511",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "**Chilón** y **Ocosingo** son los municipios en los que la implementación del servicio educativo indígena en instalaciones tanto inicial, preescolar, primaria y albergues a pesar de ello la educación de calidad escaso.\n",
+        ":::\n",
+        "\n",
+        "## Row {height=400px}\n",
+        "### Column {width=50%}\n",
+        "::: {style=\"background-color: #ffffff7f; padding: 1rem 1.5rem; border-radius: 5px;\"}\n",
+        "Existen esfuerzos orientados a mejorar la situación educativa en las comunidades indígenas, como los programas de educación bilingüe. Estos avances resultan aún limitados frente a la magnitud del problema. Esta realidad invita a reflexionar sobre la necesidad de fortalecer políticas educativas verdaderamente incluyentes, que reconozcan y atiendan las condiciones sociales, culturales y lingüísticas de estas comunidades. Solo así será posible avanzar hacia una educación que no sea un privilegio de unos cuantos, sino un derecho efectivo y garantizado para todos.\n",
+        "\n",
+        "![](https://upload.wikimedia.org/wikipedia/commons/1/1f/Misi%C3%B3n_OMS_Chimix_Chiapas_M%C3%A9xico.jpg){width=60% style=\"display: block; margin-left: auto; margin-right: auto;\"}\n",
+        "\n",
+        "[Ecuela indígena Chimix, Chiapas](https://commons.wikimedia.org/wiki/File:Misi%C3%B3n_OMS_Chimix_Chiapas_M%C3%A9xico.jpg )\n",
+        "\n",
+        "Es momento de dejar de observar la crisis educativa en Chiapas como un fenómeno distante. Frente a esta realidad, la educación en comunidades indígenas de Chiapas deja de ser solo un problema social y se convierte en una responsabilidad compartida. El rezago educativo es consecuencias de las condiciones sociales y económicas en las que viven muchas personas. Como sociedad tenemos que exigir mejores políticas educativas para contribuir a reducir estas brechas.\n",
+        "La educación de calidad no debería depender del lugar donde nace, sino ser un derecho garantizado para todos.\n",
+        ":::\n",
+        "\n",
+        "### Column {width=50%}\n",
+        "::: {style=\"background-color: #ffffff5f; padding: 1rem 1.5rem; border-radius: 5px;\"}\n",
+        "[**¿Qué podemos hacer?**]{.texto-azul-marino}\n",
+        "\n",
+        "Fortalecer la educación mediante la estrategia de profesionalización docente en lenguas indígenas, para combatir la exclusión de la población indígena en la educación.\n",
+        "Ofrecer una educación con enfoque intercultural y bilingüe, que ayude a disminuir la deserción de la población indígena en nivel básico.\n",
+        "Implementar programas de las lenguas indígenas, incluyendo a todos los pueblos originarios a tener su derecho a una educación de calidad.\n",
+        "Priorizar la inversión en la educación indígena, mejorar la infraestructura escolar básica y equiparlos con un buen mobiliario escolar.\n",
+        "\n",
+        "[**¿Qué futuro estamos construyendo si no todos tienen las mismas oportunidades de aprender?**]{.texto-azul-marino}\n",
+        ":::\n",
+        "\n",
+        "# 4\n",
+        "::: {style=\"background-color: #62bebe; padding: 1rem 1.5rem; border-radius: 6px;\"}\n",
+        "[**Agradecimientos**]{.texto-blanco  .texto-grande}\n",
+        ":::\n",
+        "Los autores agradecen al Instituto Politécnico Nacional por el apoyo de viáticos y hospedaje en la Residencia de Investigadores Visitantes, y al proyecto \"Sustentabilidad en el Sistema Ferroviario de Pasajeros de México: eficiencia de consumo de combustible debido a los sistemas de ventilación, confort térmico y calidad de aire\", con registro 20254461 en la Secretaría de Investigación y Posgrado del Instituto Politécnico Nacional por el apoyo en inscripción y viáticos."
+      ],
+      "id": "827288a3"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "c:\\Users\\jaryp\\Desktop\\Codigo_G\\.venv\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
